@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>อชิ ❤️ นุ่น | Love Forever</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Kanit', sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom right, #fff1f5, #ffe3f0);
+      color: #333;
+      transition: 0.3s;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(45deg, #ff99c8, #ff66a3);
+      padding: 2rem 1rem;
+      text-align: center;
+      color: white;
+      border-bottom: 5px solid #f8a6c1;
+      position: relative;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.3rem;
+      animation: fadeInDown 1s ease;
+    }
+    header p {
+      font-size: 1.2rem;
+      animation: fadeInUp 1s ease;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: #ffe0ec;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      text-decoration: none;
+      color: #c2185b;
+      font-weight: bold;
+      background: #ffffffcc;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: #ffc1e3;
+    }
+    section {
+      padding: 2rem;
+      display: none;
+      max-width: 900px;
+      margin: auto;
+      animation: fadeIn 0.5s ease;
+    }
+    section.active {
+      display: block;
+    }
+    .timeline-item, .message {
+      background: #fff;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .timeline-item h3 {
+      color: #e91e63;
+    }
+    .invite-card {
+      text-align: center;
+      background: #fff0f5;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255,105,180,0.2);
+    }
+    .guestbook {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .guestbook textarea, .guestbook input {
+      padding: 12px;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+    }
+    .guestbook button {
+      background: #ff4081;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #999;
+      background: #ffe0ec;
+      margin-top: 2rem;
+    }
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatHeart 6s linear infinite;
+      color: #ff69b4;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes floatHeart {
+      0% { transform: translateY(0) scale(1); opacity: 0.8; }
+      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>อชิ ❤️ นุ่น</h1>
+    <p>Our Love Story Since 14 Feb 2023</p>
+  </header>
+
+  <nav>
+    <a href="#" onclick="showPage('home')">หน้าแรก</a>
+    <a href="#" onclick="showPage('timeline')">ไทม์ไลน์</a>
+    <a href="#" onclick="showPage('invite')">การ์ดเชิญ</a>
+    <a href="#" onclick="showPage('guestbook')">คำอวยพร</a>
+  </nav>
+
+  <section id="home" class="active">
+    <h2>ยินดีต้อนรับเข้าสู่โลกของเรา 💖</h2>
+    <p>เรื่องราวของความรักที่หอมหวานและไม่มีที่สิ้นสุด 🌸</p>
+  </section>
+
+  <section id="timeline">
+    <h2>ไทม์ไลน์ความรักของเรา 💑</h2>
+    <div class="timeline-item">
+      <h3>14 ก.พ. 2023 - วันที่คบกัน</h3>
+      <p>จุดเริ่มต้นของเรื่องราวที่แสนหวาน</p>
+    </div>
+    <div class="timeline-item">
+      <h3>14 เม.ย. 2023 - ไปเที่ยวด้วยกันครั้งแรก</h3>
+      <p>บันทึกความทรงจำใต้แสงดาว</p>
+    </div>
+  </section>
+
+  <section id="invite">
+    <div class="invite-card">
+      <h2>ขอเชิญร่วมเป็นเกียรติในงานแต่งของเรา 💒</h2>
+      <p>อชิ & นุ่น</p>
+      <p>📅 12 ธันวาคม 2025</p>
+      <p>📍 โรงแรมโรแมนซ์การ์เด้น บางนา</p>
+    </div>
+  </section>
+
+  <section id="guestbook">
+    <h2>คำอวยพรจากเพื่อน ๆ 🌷</h2>
+    <div class="guestbook">
+      <input type="text" id="name" placeholder="ชื่อของคุณ" />
+      <textarea id="message" rows="3" placeholder="คำอวยพรจากใจ..."></textarea>
+      <button onclick="addMessage()">ส่งคำอวยพร</button>
+      <div id="messages"></div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 อชิ x นุ่น | สร้างด้วยหัวใจ 💖
+  </footer>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(pageId).classList.add("active");
+    }
+    function addMessage() {
+      const name = document.getElementById("name").value.trim();
+      const msg = document.getElementById("message").value.trim();
+      if (name && msg) {
+        const box = document.createElement("div");
+        box.className = "message";
+        box.innerHTML = `<strong>${name}</strong><p>${msg}</p>`;
+        document.getElementById("messages").prepend(box);
+        document.getElementById("name").value = "";
+        document.getElementById("message").value = "";
+      }
+    }
+
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.textContent = "❤️";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 800);
+  </script>
+
+</body>
+</html>
