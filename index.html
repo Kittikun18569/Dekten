@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎷 เพลงแนะนำ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      transition: 0.3s ease;
+    }
+    body {
+      margin: 0;
+      font-family: 'Kanit', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+    #loader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .spinner {
+      border: 6px solid #333;
+      border-top: 6px solid #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    .loading-text {
+      color: #fff;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    #enter-page {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #111, #000);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+    #enter-page h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    #enter-page button {
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(90deg, #fff, #aaa);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #fff;
+    }
+    #main-content {
+      display: none;
+    }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #111 0%, #000 100%);
+      z-index: 0;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #fff;
+      z-index: 2;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+      animation: fadeInDown 1s ease-in-out;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 60px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      position: relative;
+      z-index: 2;
+    }
+    .song-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.05);
+      transform: translateY(30px);
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+    }
+    .song-card:nth-child(odd) { animation-delay: 0.3s; }
+    .song-card:nth-child(even) { animation-delay: 0.5s; }
+    @keyframes fadeInUp {
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeInDown {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .song-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+    }
+    .song-cover {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      filter: brightness(90%);
+    }
+    .song-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .song-desc {
+      color: #ccc;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .listen-btn {
+      display: inline-block;
+      padding: 10px 25px;
+      border: 2px solid #fff;
+      border-radius: 30px;
+      background: transparent;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+    .listen-btn:hover {
+      background: #fff;
+      color: #000;
+      box-shadow: 0 0 15px #fff;
+    }
+    footer {
+      text-align: center;
+      padding: 40px;
+      font-size: 0.9rem;
+      color: #888;
+      z-index: 2;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div id="loader">
+    <div class="spinner"></div>
+    <div class="loading-text">กำลังโหลด...</div>
+  </div>
+  <div id="enter-page">
+    <h1>พร้อมหรือยังที่จะฟังเพลง?</h1>
+    <button onclick="enterSite()">เข้าสู่เว็บไซต์</button>
+  </div>
+  <div id="main-content">
+    <div id="particles-js"></div>
+    <header>เพลงที่พูแนะนำ</header>
+    <div class="container" id="song-list"></div>
+    <footer>&copy; 2025 DEKTEN 🎷</footer>
+  </div>
+  <script>
+    const songs = [
+      {
+        title: "1 OF 1",
+        desc: "เพลงนี้โครตเพราะ ฟังตอนเมาแล้วแบบได้ฟิวจัด",
+        link: "https://open.spotify.com/track/5kMl8givhqRWmrDTKauySB?si=06a2c74a06d84653",
+        cover: "https://i.pinimg.com/736x/a8/17/f2/a817f27f252c3e43c78181468b85b1e5.jpg"
+      },
+      {
+        title: "ตกหลุมรักการอยู่คนเดียว",
+        desc: "เปิดฟังตอนนั่งรถแบบ ฟิวแม่งได้จริง",
+        link: "https://open.spotify.com/track/3V7vMqQEBzh7ExaYrPf8rU?si=517935da9f474b69",
+        cover: "https://i.pinimg.com/736x/a8/17/f2/a817f27f252c3e43c78181468b85b1e5.jpg"
+      },
+      {
+        title: "น้ำเมา",
+        desc: "ตามชื่อ กุเมาเลยใส่มา",
+        link: "https://open.spotify.com/track/1ezA1y3oY4A9Nlyui0uXnX?si=1fbc11e93626482c",
+        cover: "https://i.pinimg.com/736x/a8/17/f2/a817f27f252c3e43c78181468b85b1e5.jpg"
+      },
+      {
+        title: "เวสป้า",
+        desc: "ฟิวแบบกุขี่มอไซ เขาขับเบนซ์",
+        link: "https://open.spotify.com/track/2deXEUI2aMdFJDS157OOJC?si=4536d7407f714d28",
+        cover: "https://i.pinimg.com/736x/a8/17/f2/a817f27f252c3e43c78181468b85b1e5.jpg"
+      },
+      {
+        title: "อยากจะกอดเธอนานๆ",
+        desc: "เพลงเพราะมากๆ ฟังแล้วอยากกอดเขาเลยแต่ทำได้แค่กอดเสาเถียง",
+        link: "https://open.spotify.com/track/63oA4hG0SqvsUFfaEhgqVX?si=bce79afa649a4dab",
+        cover: "https://i.pinimg.com/736x/a8/17/f2/a817f27f252c3e43c78181468b85b1e5.jpg"
+      },
+     {
+        title: "คำถาม",
+        desc: "คืออยากถามเขาไงว่า รักของเรานั่นหายไปตอนไหน",
+        link: "https://open.spotify.com/track/15Xn4r9FY3725iHIfyq5hE?si=2c50262cae984e1f",
+        cover: "https://i.pinimg.com/736x/a8/17/f2/a817f27f252c3e43c78181468b85b1e5.jpg"
+      },
+      // เพิ่มเพลงอื่นๆ ตามเดิมได้เลย
+    ];
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('enter-page').style.display = 'flex';
+      }, 2000);
+    });
+    function enterSite() {
+      document.getElementById('enter-page').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 100 },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.1, random: true },
+          size: { value: 2, random: true },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.1,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "none",
+            out_mode: "out",
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: { onhover: { enable: true, mode: "repulse" } },
+        },
+        retina_detect: true,
+      });
+      const songList = document.getElementById("song-list");
+      songs.forEach((song) => {
+        const div = document.createElement("div");
+        div.className = "song-card";
+        div.innerHTML = `
+          <img class="song-cover" src="${song.cover}" alt="${song.title}" />
+          <div class="song-title">${song.title}</div>
+          <div class="song-desc">${song.desc}</div>
+          <a class="listen-btn" href="${song.link}" target="_blank">ไปฟังเลย</a>
+        `;
+        songList.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
